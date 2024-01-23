@@ -2,16 +2,16 @@
   {{ __('Skip to content') }}
 </a>
 
-@include('sections.header')
+{{-- @include('sections.header') --}}
 
   <main id="main" class="main">
     @yield('content')
   </main>
 
-  @hasSection('sidebar')
+  {{-- @hasSection('sidebar')
     <aside class="sidebar">
       @yield('sidebar')
     </aside>
-  @endif
+  @endif --}}
 
-@include('sections.footer')
+{{-- @include('sections.footer') --}}

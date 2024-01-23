@@ -1,19 +1,6 @@
 FROM php:8.0-fpm as base
 
 LABEL intermediate=true
-# Arguments defined in docker-compose.yml
-# ARG user
-# ARG uid
-
-# Install system dependencies
-# RUN apt-get update && apt-get install -y \
-#     git \
-#     curl \
-#     libpng-dev \
-#     libonig-dev \
-#     libxml2-dev \
-#     zip \
-#     unzip
 
 RUN apt-get update \
   && apt-get install -y \
@@ -61,6 +48,13 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get clean
 
+# install wp-cli
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+  && php wp-cli.phar --info \
+  && chmod +x wp-cli.phar \
+  && mv wp-cli.phar /usr/local/bin/wp \
+  && wp --info
+
 # Install nodejs & supervisor
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash \
   && apt-get update \
@@ -75,8 +69,9 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash \
 
 # Set working directory
 WORKDIR /var/www/html/source/wp-content/themes/sage
+# RUN chmod -R 777 storage/framework
 # RUN composer install
 # RUN yarn install
 # RUN yarn install
-
+# RUN wp acorn db:seed --allow-root
 # USER $user

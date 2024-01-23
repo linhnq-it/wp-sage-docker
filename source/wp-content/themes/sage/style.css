@@ -11,3 +11,23 @@ License URI:        https://opensource.org/licenses/MIT
 Requires PHP:       8.0
 Requires at least:  5.9
 */
+
+.list-btn .btn {
+  min-width: 150px;
+}
+
+.table-custom .tb-head {
+  background-color: #f9f9f9;
+}
+
+.table-custom .star {
+  width: 100px;
+}
+
+.table-custom .img-sclass {
+  height: 30px;
+}
+
+.table-custom .img-team {
+  height: 20px;
+}
