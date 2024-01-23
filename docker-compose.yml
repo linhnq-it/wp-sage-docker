@@ -1,0 +1,61 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    image: laravel-app
+    restart: unless-stopped
+    working_dir: /var/www/html/source
+    volumes:
+      - ./source:/var/www/html/source
+    networks:
+      - internal
+  
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - 8005:80
+    volumes:
+      - ./source:/var/www/html/source
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d/
+    networks:
+      - internal
+  
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wp_sage
+      MYSQL_USER: wp_sage
+      MYSQL_PASSWORD: wordpress
+    volumes:
+      -  ./mysql:/var/lib/mysql
+    networks:
+      - internal
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8183:80
+    networks:
+      - internal
+
+#Docker Networks
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  mysql_data: {}
