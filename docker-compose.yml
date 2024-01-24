@@ -16,7 +16,7 @@ services:
     image: nginx:alpine
     restart: unless-stopped
     ports:
-      - 8005:80
+      - 8081:80
     volumes:
       - ./source:/var/www/html/source
       - ./docker/nginx/conf.d:/etc/nginx/conf.d/
@@ -48,7 +48,7 @@ services:
       PMA_ARBITRARY: 1
     restart: always
     ports:
-      - 8183:80
+      - 8082:80
     networks:
       - internal
 
