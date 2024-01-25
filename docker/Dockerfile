@@ -56,7 +56,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
   && wp --info
 
 # Install nodejs & supervisor
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash \
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash \
   && apt-get update \
   && apt-get install -y \
     # nginx \

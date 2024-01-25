@@ -16,7 +16,7 @@ services:
     image: nginx:alpine
     restart: unless-stopped
     ports:
-      - 8081:80
+      - 8005:80
     volumes:
       - ./source:/var/www/html/source
       - ./docker/nginx/conf.d:/etc/nginx/conf.d/

@@ -9,7 +9,7 @@ docker compose run app bash
 ```
 
 ```sh
-wp core install --url=http://localhost:8081/ --title=wp-sage-docker --admin_user=admin --admin_password=admin --admin_email=admin@gmail.com --allow-root
+wp core install --url=http://localhost:8005/ --title=wp-sage-docker --admin_user=admin --admin_password=admin --admin_email=admin@gmail.com --allow-root
 wp theme activate sage --allow-root
 
 cd wp-content/themes/sage
@@ -25,8 +25,8 @@ wp acorn db:seed --allow-root
 
 
 ```sh
-WEB: http://localhost:8081/
-Admin: http://localhost:8081/wp-login.php admin/admin
+WEB: http://localhost:8005/
+Admin: http://localhost:8005/wp-login.php admin/admin
 Phpmyadmin: http://localhost:8082/
 ```
 
